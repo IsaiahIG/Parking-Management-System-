@@ -1,0 +1,28 @@
+
+services:
+  postgres:
+    image: postgres:16
+    hostname: pgres_UMBC
+    container_name: pgres_pms
+    environment:
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: dbpass
+      POSTGRES_DB: cmsc461PMS
+
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: isaiahg2@umbc.edu
+      PGADMIN_DEFAULT_PASSWORD: admin
+    hostname: pgadmin_pms
+    container_name: UMBCpms
+    ports:
+      - "8080:80"
+volumes:
+  pgdata:
+    name: pgdataumbc
